@@ -31,11 +31,11 @@ export class TasksController extends Controller {
 
   @Patch('{taskId}')
   @SuccessResponse(200)
-  async updateTaskStatus(@Path() taskId: number, @Body() { status }: UpdateTaskStatusDTO) {
+  async updateTaskStatus(@Path() taskId: number, @Body() payload: UpdateTaskStatusDTO) {
     const task = this.tasks.find(({ id }) => id === taskId);
     if (!task) {
       throw new Error();
     }
-    task.status = status;
+    task.status = payload.status;
   }
 }
